@@ -10,7 +10,7 @@ bsl=madmpro_lexers:Lang1CLexer
 setup(
     name='madmpro-lexers',
     version='1.0.0',
-    description='Pygments lexer package for PyMdown.',
+    description='Pygments lexer package for Pygments.',
     author='madm.pro',
     author_email='madm[dot]pro [at] gmail.com',
     url='https://github.com/madmpro/madmpro-lexers',
