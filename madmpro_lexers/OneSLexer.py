@@ -25,6 +25,16 @@ class OneSLexer(RegexLexer):
             (r'\\\n', Text), # line continuation
             (r'//.*?\n', Comment),
         ],
+        'funcname': [
+            (r'[a-zа-яA-ZА-Я_][a-zа-яA-ZА-Я0-9_]*', Name.Function, '#pop')
+        ],
+        'string': [
+            (r'"', String, '#pop'),
+            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
+            (r'[^\\"\n]+', String), # all other characters
+            (r'\\\n', String), # line continuation
+            (r'\\', String), # stray backslash
+        ],
         'macro': [
             (r'[^/\n]+', Comment.Preproc),
             (r'/[*](.|\n)*?[*]/', Comment),
