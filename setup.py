@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 entry_points = '''
 [pygments.lexers]
-bsl=madmpro-lexers:Lang1CLexer
+bsl=madmpro_lexers:Lang1CLexer
 '''
 
 setup(
