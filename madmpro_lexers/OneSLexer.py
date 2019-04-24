@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#import re
+import re
 
 from pygments.lexer import RegexLexer, RegexLexerMeta, include, bygroups, using, this
 from pygments.token import *
