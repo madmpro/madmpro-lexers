@@ -18,12 +18,14 @@ __all__ = ['OneSLexer']
 
 class OneSLexer(RegexLexer):
 
-    name = '1S'
-    aliases = ['1s', '1c', 'bsl']
-    filenames = ['*.1s', '*.prm', '*.1cpp', '*.bsl']
-    mimetypes = ['text/x-1s']
-
-    #: optional Comment or Whitespace
-    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
-
-    flags = re.IGNORECASE | re.MULTILINE | re.DOTALL | re.UNICODE
+    tokens = {
+        'root': [
+            (r'(?s)\{\+{2}.*?\+{2}\}', token.String),
+            (r'(?s)\{\-{2}.*?\-{2}\}', token.String),
+            (r'(?s)\{={2}.*?={2}\}', token.String),
+            (r'(?s)\{>{2}.*?<{2}\}', token.String),
+            (r'(?s)\{~{2}.*?~>.*?~{2}\}', token.String),
+            (r' |\t', token.Whitespace),
+            (r'.', token.Text)
+        ]
+    }
