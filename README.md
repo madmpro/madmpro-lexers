@@ -26,3 +26,4 @@ Based on projects:
 - https://github.com/facelessuser/pymdown-lexers
 - https://github.com/zurapa/Lang1CLexer
 - https://jenyay.net/Outwiker/SourcePlugin
+- [Jenyay/outwiker](https://github.com/Jenyay/outwiker/blob/62d310dbf0c8b8067bb9b04ae9c68833be57d1ea/plugins/source/source/pygments/lexers/1S.py#L42)
