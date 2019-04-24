@@ -15,7 +15,6 @@ from pygments.token import *
 
 __all__ = ['OneSLexer']
 
-
 class OneSLexer(RegexLexer):
 
     tokens = {
