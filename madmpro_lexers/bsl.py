@@ -33,6 +33,28 @@ class Lang1CLexer(RegexLexer):
             (r'\'\d*\'', Literal.Date),
             # Описание имён переменных и функций
             (r'(?iu)\w*\b', Name),
-
+            # Описание ключевых слов
+            (r'(?i)(Var|Val|New|Return|Goto|Continue|Break|Execute)\b|'
+             r'(?iu)(Перем|Знач|Новый|Возврат|Перейти|Продолжить|Прервать|Выполнить)\b|'
+             # Условие Если
+             r'(?i)(EndIf|If|Then|ElsIf|Else)\b|'
+             r'(?iu)(КонецЕсли|Если|Тогда|ИначеЕсли|Иначе)\b|'
+             # Циклы
+             r'(?i)(EndDo|Do|For|Each|In|While|To)\b|'
+             r'(?iu)(КонецЦикла|Цикл|Для|Каждого|Из|Пока|По)\b|'
+             # Процедура и Функция
+             r'(?i)(EndProcedure|Procedure|EndFunction|Function)\b|'
+             r'(?iu)(КонецПроцедуры|Процедура|КонецФункции|Функция)\b|'
+             # Попытка
+             r'(?i)(EndTry|Try|Raise|Except)\b|'
+             r'(?iu)(КонецПопытки|Попытка|ВызватьИсключение|Исключение)\b|'
+             # Условия: И, Или, Не
+             r'(?i)(And|Or|Not)\b|'
+             r'(?iu)(И|Или|Не)\b'
+             , Keyword.Reserved),
+             # Литералы Истина, Ложь
+             (r'(?i)(True|False|Null)\b|'
+              r'(?iu)(Истина|Ложь)\b'
+              , Literal),
         ]
     }
