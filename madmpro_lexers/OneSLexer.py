@@ -37,6 +37,7 @@ class OneSLexer(RegexLexer):
             (r'\'[0-3][0-9]\.[0-1][0-9]\.([0-9][0-9]|[0-9][0-9][0-9][0-9])\'', Literal.Date),
             (r'[!%^&*()+=|\[\]:,.<>/?-]', Operator),
             (r'(Процедура|Функция|procedure|function)(\s+)', bygroups(Keyword, Text), 'funcname'),
+            (r'(КонецПроцедуры|EndProcedure|КонецФункции|EndFunction)\b', Keyword, '#pop'),
             (r'(Перем|Var|Если|If|Тогда|Then|ИначеЕсли|Elsif|Иначе|Else|КонецЕсли|Endlf|'
              r'Цикл|Do|Для|For|По|To|Пока|While|'
              r'He|Not|Попытка|Try|Исключение|Except|КонецПопытки|'
@@ -44,21 +45,24 @@ class OneSLexer(RegexLexer):
              r'ОписаниеОшибки|GetErrorDescription|Перем|Var|Перейти|Goto|Возврат|Return|Продолжить|'
              r'Continue|Прервать|Break|И|And|Или|Or|Метаданные|MetaData)\b', Keyword.Reserved),
             #(r'(class|класс)(\s+)', bygroups(Keyword, Text), 'class'), # классы 1С++
-            (r'(ПолучитьБазовыйКласс|GetBaseClass|НазначитьБазовыйКласс|' # Функционал классов 1С++
+            # Функционал классов 1С++
+            (r'(ПолучитьБазовыйКласс|GetBaseClass|НазначитьБазовыйКласс|'
             r'ОтправитьСообщениеМодулюХоз|SendMessageOwnMod|ПолучитьПуть|'
             r'GetPathName|ПолучитьКонтекстОкружения|GetEnvContext|'
             r'ПолучитьСписокПараметров|GetParamsList|УстановитьПараметрПоИндексу|'
             r'SetOnIndexParams|стрИмяМетода|ЗаменитьЭксзБазовогоКласса|'
             r'ReplaceInstBaseClasses|_ПриОткрытии|_OnOpen|_ВыброситьИскл|'
             r'_Throw|_ПолучитьКод|_GetCode|_SQLCreate)\b', Keyword.Reserved),
-            (r'(ИндексированнаяТаблица|IndexedTable|АктивИкс|ActiveX|' #  Классы 1С++
+            #  Классы 1С++
+            (r'(ИндексированнаяТаблица|IndexedTable|АктивИкс|ActiveX|'
             r'РаботаСРегистромWin|WorkAsRegisterWin|ВыполняемыйМодуль|'
             r'ExecuteModule|Делегат|Delegate|МенеджерСобытий|EventManager|'
             r'Структура|Struct|DynaValue|Поток|Thread|GUID|BinaryData'
             r'ODBCDataBase|ODBCRecordSet|MetaDataWork|SQLLock)\b', Name.Class),
             (r'(РазделительСтраниц|PageBreak|РазделительСтрокLineBreak|'
             r'СимволТабуляции|TabSymbol)\b', Keyword.Constant),
-            (r'(Число|Number|Строка|String|Дата|Date|Неопределенный|Undefine|void|' # типы данных
+            # Типы данных
+            (r'(Число|Number|Строка|String|Дата|Date|Неопределенный|Undefine|void|'
             r'ТаблицаЗначений|ValueTable|СписокЗначений|ValueList|'
             r'Неопределенный|Undefine|Запрос|Query|Константа|Const|'
             r'Справочник|Reference|Перечисление|Enum|Документ Document|'
@@ -69,33 +73,44 @@ class OneSLexer(RegexLexer):
             r'Calendar|Запрос|Query|Текст|Text|Таблица|Table|СписокЗначений|'
             r'ValueList|ТаблицаЗначений|ValueTable|Картинка|Picture|'
             r'Периодический|Регiodic|ФС|FS|XBase|Xbase)\b', Keyword.Type),
-            (r'(Окр|Round|Цел|Int|Мин|Min|Макс|Max|Лог10|Лог|Ln|СтрДлина|StrLen' # Математические функции
-            r'ПустаяСтрока|IsBlankString|СокрЛ|TrimL|СокрП|TrimR|СокрЛП|TrimAll|' # Строковые функции
+            # Математические функции
+            (r'(Окр|Round|Цел|Int|Мин|Min|Макс|Max|Лог10|Лог|Ln|СтрДлина|StrLen'
+            # Строковые функции
+            r'ПустаяСтрока|IsBlankString|СокрЛ|TrimL|СокрП|TrimR|СокрЛП|TrimAll|'
             r'Лев|Left|Прав|Right|Сред|Mid|Найти|Find|СтрЗаменить|StrReplace|'
             r'СтрЧислоВхождений|StrCountOccur|СтрКоличествоСтрок|StrLineCount|'
             r'СтрПолучитьСтроку|StrGetLine|Врег|Upper|НРег|Lower|OemToAnsi|'
             r'AnsiToOem|Симв|Chr|КодСимв|Asс|'
-            r'РабочаяДата|WorkingDate|ТекущаяДата|CurDate|ДобавитьМесяц|AddMonth|' # Функции работы с датой
+            # Функции работы с датой
+            r'РабочаяДата|WorkingDate|ТекущаяДата|CurDate|ДобавитьМесяц|AddMonth|'
             r'НачМесяца|BegOfMonth|КонМесяца|EndOfMonth|НачКвартала|BegOfQuart|КонКвартала|'
             r'EndOfQuart|НачГода|BegOfYear|КонГода|EndOfYear|НачНедели|BegOfWeek|КонНедели|'
             r'EndOfWeek|ДатаГод|GetYear|ДатаМесяц|GetMonbh|ДатаЧисло|GetDay|НомерНеделиГода|'
             r'GetWeekOfYear|НомерДняГода|GetDayOfYear|НомерДняНедели|GetDayOfWeek|ПериодСтр|'
             r'РегiodStr|НачалоСтандартногоИнтервала|BegOfStandrdRange|КонецСтандартногоИнтервала|'
-            r'ТекущееВремя|CurrentTime|' # Функции работы с временем
-            r'СформироватьПозициюДокумента|MakeDocPosition|РазобратьПозициюДокумента|SplitDocPosition|' # Функции работы с позицией документа
-            r'Пропись|Spelling|Формат|Format|Шаблон|Template|ФиксШаблон|FixTemplate' # Процедуры и функции форматирования
-            r'ВвестиЗначение|InputValue|ВвестиЧисло|InputNumeric|ВвестиСтроку|InputString|' # Функции для вызова диалога ввода данных
+            # Функции работы с временем
+            r'ТекущееВремя|CurrentTime|'
+            # Функции работы с позицией документа
+            r'СформироватьПозициюДокумента|MakeDocPosition|РазобратьПозициюДокумента|SplitDocPosition|'
+            # Процедуры и функции форматирования
+            r'Пропись|Spelling|Формат|Format|Шаблон|Template|ФиксШаблон|FixTemplate'
+            # Функции для вызова диалога ввода данных
+            r'ВвестиЗначение|InputValue|ВвестиЧисло|InputNumeric|ВвестиСтроку|InputString|'
             r'ВвестиДату|InputDate|ВвестиПериод|InputРегiod|ВвестиПеречисление|InputEnum|'
-            r'Вопрос|DoQueryBox|Предупреждение|DoMessageBox|Сообщить|Message|' #Процедуры и функции общего назначения
+            #Процедуры и функции общего назначения
+            r'Вопрос|DoQueryBox|Предупреждение|DoMessageBox|Сообщить|Message|'
             r'ОчиститьОкноСообщений|ClearMessageWindow|Состояние|Status|Сигнал|Веер|Разм|Dim|'
-            r'ЗаголовокСистемы|SystemCaption|ИмяКомпьютера|ComputerName|ИмяПользователя|' # Функции среды исполнения
+            # Функции среды исполнения
+            r'ЗаголовокСистемы|SystemCaption|ИмяКомпьютера|ComputerName|ИмяПользователя|'
             r'UserName|ПолноеИмяПользователя|UserFullName|НазваниеНабораПрав|RightName|'
             r'ПравоДоступа|AccessRight|НазваниеИнтерфейса|UserInterfaceName|КаталогПользователя|'
             r'UserDir|КаталогИБ|IBDir|КаталогПрограммы|BinDir|КаталогВременныхФайлов|'
             r'TempFilesDir|МонопольныйРежим|ExclusiveMode|ОсновнойЯзык|GeneralLanguage|'
-            r'НачатьТранзакцию|BeginTransaction|ЗафиксироватьТранзакцию|CommitTransation|' # Процедуры работы с транзакциями
+            # Процедуры работы с транзакциями
+            r'НачатьТранзакцию|BeginTransaction|ЗафиксироватьТранзакцию|CommitTransation|'
             r'ОтменитьТранзакцию|RollBackTransaction|'
-            r'СоздатьОбъект|CreateObject|СтатусВозврата|ReturnStatus|ОткрытьФорму|' # Специальные процедуры и функции
+            # Специальные процедуры и функции
+            r'СоздатьОбъект|CreateObject|СтатусВозврата|ReturnStatus|ОткрытьФорму|'
             r'OpenForm|ОткрытьФормуМодально|OpenFormModal|ТипЗначения|ValueType|ТипЗначенияСтр|'
             r'ValueTypeStr|ПустоеЗначение|EmptyValue|ПолучитьПустоеЗначение|GetEmptyValue|'
             r'НазначитьВид|SetKind|ЗаписьЖурналаРегистрации|LogMessageWrite|ПрефиксАвтоНумерации|'
@@ -103,24 +118,28 @@ class OneSLexer(RegexLexer):
             r'ЗапуститьПриложение|RunApp|ЗавершитьРаботуСистемы|ExitSystem|НайтиПомеченныеНаУдаление|'
             r'FindMarkedForDelete|НайтиСсылки|FindReferences|УдалитьОбъекты|DeleteObjects|'
             r'ОбработкаОжидания|IdleProcessing|'
-            r'ЗначениеВСтрокуВнутр|ValueToStringInternal|ЗначениеИзСтрокиВнутр|ValueFromStringInternal|' # Процедуры и функции обработки значений
+            # Процедуры и функции обработки значений
+            r'ЗначениеВСтрокуВнутр|ValueToStringInternal|ЗначениеИзСтрокиВнутр|ValueFromStringInternal|'
             r'ЗначениеВСтроку|ValueToString|ЗначениеИзСтроки|ValueFromString|ЗначениеВФайл|'
             r'ValueToFile|ЗначениеИзФайла|ValueFromFile|СохранитьЗначение|SaveValue|'
             r'ВосстановитьЗначение|'
-            r'ПолучитьТА|GetAP|ПолучитьДатуТА|GetDateOfAP|ПолучитьВремяТА|GetTimeOfAP' # Процедуры и функции компоненты <Оперативный учет>
+            # Процедуры и функции компоненты <Оперативный учет>
+            r'ПолучитьТА|GetAP|ПолучитьДатуТА|GetDateOfAP|ПолучитьВремяТА|GetTimeOfAP'
             r'ПолучитьДокументТА|GetDocOfAP|ПолучитьПозициюТА|GetAPPosition|УстановитьТАна|'
             r'SetAPToBeg|УстановитьТАпо|SetAPToEnd|'
-            r'ВыбранныйПланСчетов|DefaultChartOfAccounts|ОсновнойПланСчетов|MainChartOfAccounts|' # Процедуры и функции компоненты <Бухгалтерский учет>
+            # Процедуры и функции компоненты <Бухгалтерский учет>
+            r'ВыбранныйПланСчетов|DefaultChartOfAccounts|ОсновнойПланСчетов|MainChartOfAccounts|'
             r'СчетПоКоду|AccountByCode|НачалоПериодаБИ|BeginOfРегiodBT|КонецПериодаБИ|'
             r'EndOfРегiodBT|КонецРассчитанногоПериодаБИ|EndOfCalculatedРегiodBT|'
             r'НазначитьСчет|SetAccount|ВвестиПланСчетов|InputChartOfAccounts|ВвестиВидСубконто|'
             r'InputSubcontoKind|МаксимальноеКоличествоСубконто|MaxSubcontoCount|'
-            r'ОсновнойЖурналРасчетов|BasicCalcJournal|' # Процедуры и функции компоненты <Расчет>
-            r'ПодключитьВнешнююКомпоненту|AttachAddIn|ЗагрузитьВнешнююКомпоненту|LoadAddin)\b', Keyword.Pseudo), # Внешние компоненты
+            # Процедуры и функции компоненты <Расчет>
+            r'ОсновнойЖурналРасчетов|BasicCalcJournal|'
+            # Внешние компоненты
+            r'ПодключитьВнешнююКомпоненту|AttachAddIn|ЗагрузитьВнешнююКомпоненту|LoadAddin)\b', Keyword.Pseudo),
             (r'(Экспорт|Export|Далее|Forward)\b', Keyword.Declaration),
             (r'~[a-zA-Zа-яА-Я_][a-zA-Zа-яА-Я0-9_]*:', Name.Label),
             (r'~[a-zA-Zа-яА-Я_][a-zA-Zа-яА-Я0-9_]*', Name.Label),
-            (r'(КонецПроцедуры|EndProcedure|КонецФункции|EndFunction)\b', Keyword, '#pop'),
             (r'[a-zA-Zа-яА-Я_][a-zA-Zа-яА-Я0-9_]*', Name),
         ],
         'root': [
