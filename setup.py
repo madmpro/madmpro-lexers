@@ -2,20 +2,20 @@
 """Setup madmpro-lexers."""
 from setuptools import setup, find_packages
 
-entry_points = '''
-[pygments.lexers]
-bsl=madmprolexers.bsl:Lang1CLexer
-'''
+
 
 setup(
-    name='madmprolexers',
+    name='madmpro-lexers',
     version='1.0.0',
     description='Pygments lexer package for Pygments.',
     author='madm.pro',
     author_email='madm[dot]pro [at] gmail.com',
     url='https://github.com/madmpro/madmpro-lexers',
     packages=find_packages(),
-    entry_points=entry_points,
+    entry_points = '''
+    [pygments.lexers]
+    bsl = madmpro_lexers.bsl:Lang1CLexer
+    ''',
     install_requires=[
         'Pygments>=2.0.1'
     ],
