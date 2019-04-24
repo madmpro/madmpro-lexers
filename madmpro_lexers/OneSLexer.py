@@ -25,6 +25,26 @@ class OneSLexer(RegexLexer):
             (r'\\\n', Text), # line continuation
             (r'//.*?\n', Comment),
         ],
+        'root': [
+            include('whitespace'),
+            # classes
+            (r'(class|класс)(\s+)'                          # class keyword
+             r'([a-zA-Zа-яА-Я_][a-zA-Zа-яА-Я0-9_.]*)(\s*)'   # class name
+             r'(=)(\s*)'                                    # operator =
+             r'([^:^{^/]*)(:{0,1})(.*?)({)',                  # class path
+             bygroups(Keyword, Text, Name.Class, Text, Operator, Text, String, Operator, using(this), Keyword), 'classdef'),
+            # functions
+            #(r'(Процедура|Функция|procedure|function)(\s+)'
+            #r'([a-zA-Zа-яА-Я_][a-zA-Zа-яА-Я0-9_]*)'
+            #r'(\s*\([^;]*?\))',                           # signature
+            #bygroups(Keyword, Text, Name.Function, using(this)), 'function'),
+            ('', Text, 'statement'),
+        ],
+        'statement' : [
+            include('whitespace'),
+            include('statements'),
+            (';', Text, '#pop'),
+        ],
         'classdef': [
             include('whitespace'),
             (r'([a-zA-Zа-яА-Я_][a-zA-Zа-яА-Я0-9_.]*)(\s+)' # return arguments
