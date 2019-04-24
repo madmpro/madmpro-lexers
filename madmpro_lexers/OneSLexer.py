@@ -57,6 +57,12 @@ class OneSLexer(RegexLexer):
             ('(}|}\s+;)', Keyword, '#pop'),
             include('statements'),
         ],
+#        'function': [
+#            (r'(КонецПроцедуры|EndProcedure|КонецФункции|EndFunction)\b', Keyword, '#pop'),
+#            include('whitespace'),
+#            include('statements'),
+#            (';', Text),
+#        ],        
         'funcname': [
             (r'[a-zа-яA-ZА-Я_][a-zа-яA-ZА-Я0-9_]*', Name.Function, '#pop')
         ],
