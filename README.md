@@ -8,7 +8,7 @@ A package created to add additional lexers for use in Pygments.
 | bsl | Simple lexer for Language 1C. |
 
 ## Adding New Lexers
-To add a new lexer, the lexer must be dropped into the `madmpro_lexers` folder.  The `__init__.py` file must be updated to expose the lexer.  Lastly, `setup.py` must be modified to setup the entry points for the new lexer.
+To add a new lexer, the lexer must be dropped into the `madmpro-lexers` folder.  The `__init__.py` file must be updated to expose the lexer.  Lastly, `setup.py` must be modified to setup the entry points for the new lexer.
 
 ## Install
 
