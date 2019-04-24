@@ -31,6 +31,8 @@ class Lang1CLexer(RegexLexer):
             (r'\d*\.\d\b', Number),
             # Описание дат
             (r'\'\d*\'', Literal.Date),
+            # Описание имён переменных и функций
+            (r'(?iu)\w*\b', Name),
 
         ]
     }
