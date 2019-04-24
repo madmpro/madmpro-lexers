@@ -2,8 +2,6 @@
 """Setup madmpro-lexers."""
 from setuptools import setup, find_packages
 
-
-
 setup(
     name='madmpro-lexers',
     version='1.0.0',
@@ -14,7 +12,7 @@ setup(
     packages=find_packages(),
     entry_points = '''
     [pygments.lexers]
-    bsl = madmpro_lexers:Lang1CLexer
+    bsl = madmpro_lexers:OneSLexer
     ''',
     install_requires=[
         'Pygments>=2.0.1'

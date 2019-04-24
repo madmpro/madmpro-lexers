@@ -1,3 +1,3 @@
-from .bsl import Lang1CLexer
+from .1S import OneSLexer
 
-__all__ = ["Lang1CLexer",]
+__all__ = ["OneSLexer",]
