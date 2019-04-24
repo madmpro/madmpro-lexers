@@ -8,7 +8,7 @@ bsl=madmpro_lexers:Lang1CLexer
 '''
 
 setup(
-    name='madmpro-lexers',
+    name='madmpro_lexers',
     version='1.0.0',
     description='Pygments lexer package for Pygments.',
     author='madm.pro',
