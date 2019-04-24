@@ -13,6 +13,9 @@ class OneSLexer(RegexLexer):
     filenames = ['*.1s', '*.prm', '*.1cpp', '*.bsl', '*.os']
     mimetypes = ['text/x-1c']
 
+    #: optional Comment or Whitespace
+    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+    
     tokens = {
         'root': [
             (r'\s', Whitespace),
