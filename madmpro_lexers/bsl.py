@@ -31,6 +31,5 @@ class Lang1CLexer(RegexLexer):
             (r'\d*\.\d\b', Number),
             # Описание имён переменных и функций
             (ur'(?iu)\w*\b', Name),
-
         ]
     }
