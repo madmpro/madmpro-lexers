@@ -1,14 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
-    pygments.lexers.1C
-    ~~~~~~~~~~~~~~~~~~~~~~~~
+""" pygments.lexers.1C """
 
-    Lexers for language: 1C.
-
-    Author: https://github.com/zurapa
-    Original license: BSD
-
-"""
 #import re
 from pygments.lexer import RegexLexer
 from pygments.token import *
@@ -20,7 +11,7 @@ class Lang1CLexer(RegexLexer):
     """Simple lexer for Language 1C."""
 
     name = 'Language 1C lexer'
-    aliases = ['1c', 'bsl']
+    aliases = ['1c', 'bsl',]
     filenames = ['*.bsl', '*.os']
     mimetypes = ['text/x-1c']
 
