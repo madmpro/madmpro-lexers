@@ -27,16 +27,11 @@ class OneSLexer(RegexLexer):
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
 
-
     flags = re.IGNORECASE | re.MULTILINE | re.DOTALL | re.UNICODE
     tokens = {
         'whitespace': [
             (r'^\s*#', Comment.Preproc, 'macro'),
-            (r'^\s*//#.*?\n', Comment.Preproc),
-            (r'\n', Text),
-            (r'\s+', Text),
-            (r'\\\n', Text), # line continuation
-            (r'//.*?\n', Comment),
+
         ],
 
     }
