@@ -17,13 +17,6 @@ class OneSLexer(RegexLexer):
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
 
     tokens = {
-        'root': [
-            (r'\s', Whitespace),
-            # Описание строки.
-            (r'(\".*?\"|\|.*?\"|\".*|\|.*)', String),
-            # Описание коментария.
-            (r'//.*?\n', Comment),
-        ],
         'whitespace': [
             (r'^\s*#', Comment.Preproc, 'macro'),
             (r'^\s*//#.*?\n', Comment.Preproc),
