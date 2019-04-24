@@ -27,6 +27,25 @@ class Lang1CLexer(RegexLexer):
             (r'[,.!:;()\[\]]', Punctuation),
             # Описание операторов.
             (r'[%^&*+=|<>/?-]', Operator),
+            # Описание ключевых слов
+            (ur'(?i)(Var|Val|New|Return|Goto|Continue|Break|Execute)\b|'
+             ur'(?iu)(Перем|Знач|Новый|Возврат|Перейти|Продолжить|Прервать|Выполнить)\b|'
+             # Условие Если
+             ur'(?i)(EndIf|If|Then|ElsIf|Else)\b|'
+             ur'(?iu)(КонецЕсли|Если|Тогда|ИначеЕсли|Иначе)\b|'
+             # Циклы
+             ur'(?i)(EndDo|Do|For|Each|In|While|To)\b|'
+             ur'(?iu)(КонецЦикла|Цикл|Для|Каждого|Из|Пока|По)\b|'
+             # Процедура и Функция
+             ur'(?i)(EndProcedure|Procedure|EndFunction|Function)\b|'
+             ur'(?iu)(КонецПроцедуры|Процедура|КонецФункции|Функция)\b|'
+             # Попытка
+             ur'(?i)(EndTry|Try|Raise|Except)\b|'
+             ur'(?iu)(КонецПопытки|Попытка|ВызватьИсключение|Исключение)\b|'
+             # Условия: И, Или, Не
+             ur'(?i)(And|Or|Not)\b|'
+             ur'(?iu)(И|Или|Не)\b'
+             , Keyword.Reserved),
 
         ]
     }
