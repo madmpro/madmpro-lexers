@@ -10,7 +10,7 @@ __all__ = ['OneSLexer']
 class OneSLexer(RegexLexer):
     name = 'Language 1C lexer'
     aliases = ['1c']
-    filenames = ['*.bsl', '*.os']
+    filenames = ['*.1s', '*.prm', '*.1cpp', '*.bsl', '*.os']
     mimetypes = ['text/x-1c']
 
     tokens = {
