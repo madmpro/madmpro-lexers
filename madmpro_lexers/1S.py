@@ -11,8 +11,7 @@
 import re
 
 from pygments.lexer import RegexLexer, RegexLexerMeta, include, bygroups, using, this
-from pygments.token import \
-     Text, Comment, Operator, Keyword, Name, String, Number, Literal
+from pygments.token import *
 
 
 __all__ = ['OneSLexer']
@@ -31,5 +30,13 @@ class OneSLexer(RegexLexer):
 
     flags = re.IGNORECASE | re.MULTILINE | re.DOTALL | re.UNICODE
     tokens = {
+        'whitespace': [
+            (r'^\s*#', Comment.Preproc, 'macro'),
+            (r'^\s*//#.*?\n', Comment.Preproc),
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'\\\n', Text), # line continuation
+            (r'//.*?\n', Comment),
+        ],
 
     }
