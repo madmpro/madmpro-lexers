@@ -9,7 +9,7 @@ __all__ = ['OneSLexer']
 
 class OneSLexer(RegexLexer):
     name = 'Language 1C lexer'
-    aliases = ['1c']
+    aliases = ['1c', 'bsl']
     filenames = ['*.1s', '*.prm', '*.1cpp', '*.bsl', '*.os']
     mimetypes = ['text/x-1c']
 
@@ -122,7 +122,7 @@ class OneSLexer(RegexLexer):
             (r'~[a-zA-Zа-яА-Я_][a-zA-Zа-яА-Я0-9_]*', Name.Label),
             (r'(КонецПроцедуры|EndProcedure|КонецФункции|EndFunction)\b', Keyword, '#pop'),
             (r'[a-zA-Zа-яА-Я_][a-zA-Zа-яА-Я0-9_]*', Name),
-        ],        
+        ],
         'root': [
             include('whitespace'),
             # classes
