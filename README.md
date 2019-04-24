@@ -25,3 +25,4 @@ Verify that the package installed correctly by looking for the lexer "bsl" in th
 Based on projects:
 - https://github.com/facelessuser/pymdown-lexers
 - https://github.com/zurapa/Lang1CLexer
+- https://jenyay.net/Outwiker/SourcePlugin
