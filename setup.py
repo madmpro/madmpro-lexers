@@ -4,11 +4,11 @@ from setuptools import setup, find_packages
 
 entry_points = '''
 [pygments.lexers]
-bsl=madmpro_lexers:Lang1CLexer
+bsl=madmpro-lexers:Lang1CLexer
 '''
 
 setup(
-    name='madmpro_lexers',
+    name='madmpro-lexers',
     version='1.0.0',
     description='Pygments lexer package for Pygments.',
     author='madm.pro',
