@@ -27,14 +27,6 @@ class Lang1CLexer(RegexLexer):
             (r'[,.!:;()\[\]]', Punctuation),
             # Описание операторов.
             (r'[%^&*+=|<>/?-]', Operator),
-            # Литералы Истина, Ложь
-            (ur'(?i)(True|False|Null)\b|'
-             ur'(?iu)(Истина|Ложь)\b'
-             , Literal),
-            # Описание чисел
-            (r'\d*\.\d\b', Number),
-            # Описание имён переменных и функций
-            (ur'(?iu)\w*\b', Name),
 
         ]
     }
