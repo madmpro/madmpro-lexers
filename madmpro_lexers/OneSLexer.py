@@ -25,4 +25,12 @@ class OneSLexer(RegexLexer):
             (r'\\\n', Text), # line continuation
             (r'//.*?\n', Comment),
         ],
+        'macro': [
+            (r'[^/\n]+', Comment.Preproc),
+            (r'/[*](.|\n)*?[*]/', Comment),
+            (r'//.*?\n', Comment, '#pop'),
+            (r'/', Comment.Preproc),
+            (r'(?<=\\)\n', Comment.Preproc),
+            (r'\n', Comment.Preproc, '#pop'),
+        ],
     }
