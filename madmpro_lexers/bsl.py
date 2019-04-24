@@ -29,7 +29,8 @@ class Lang1CLexer(RegexLexer):
             (r'[%^&*+=|<>/?-]', Operator),
             # Описание чисел
             (r'\d*\.\d\b', Number),
-            # Описание имён переменных и функций
-            (ur'(?iu)\w*\b', Name),
+            # Описание дат
+            (r'\'\d*\'', Literal.Date),
+
         ]
     }
