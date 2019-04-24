@@ -15,7 +15,7 @@ class OneSLexer(RegexLexer):
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
-    
+
     tokens = {
         'root': [
             (r'\s', Whitespace),
@@ -23,6 +23,13 @@ class OneSLexer(RegexLexer):
             (r'(\".*?\"|\|.*?\"|\".*|\|.*)', String),
             # Описание коментария.
             (r'//.*?\n', Comment),
-
-        ]
+        ],
+        'whitespace': [
+            (r'^\s*#', Comment.Preproc, 'macro'),
+            (r'^\s*//#.*?\n', Comment.Preproc),
+            (r'\n', Text),
+            (r'\s+', Text),
+            (r'\\\n', Text), # line continuation
+            (r'//.*?\n', Comment),
+        ],
     }
