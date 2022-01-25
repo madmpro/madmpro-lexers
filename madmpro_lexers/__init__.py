@@ -1,3 +1,3 @@
-from .OneSLexer import OneSLexer
+from .OneCLexer import OneCLexer
 
-__all__ = ["OneSLexer"]
+__all__ = ["OneCLexer"]
