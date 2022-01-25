@@ -5,9 +5,9 @@ import re
 from pygments.lexer import RegexLexer, RegexLexerMeta, include, bygroups, using, this
 from pygments.token import *
 
-__all__ = ['OneSLexer']
+__all__ = ['OneCLexer']
 
-class OneSLexer(RegexLexer):
+class OneCLexer(RegexLexer):
     name = 'Language 1C lexer'
     aliases = ['1c', 'bsl']
     filenames = ['*.1s', '*.prm', '*.1cpp', '*.bsl', '*.os']
